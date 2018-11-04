@@ -6,13 +6,13 @@
 # change output directory to desired path on your machine
 
 ## Output directory
-dir = "/Documents/CST205/Lab6/output/"
+dir = "/Documents/GitHub/Lab6/output/"
 
 ## main method
-#def main():
+def main():
   #writePict(removeRedEye(getPic(), 60, 200, 0, 100), dir + "noredeye.jpg")
-  #writePict(artify(getPic()), dir + "artify.jpg")
-  #writePict(chromaKey(getPic(), getPic()), dir + "greenscreen1.png")
+  #writePict(artify(getPic()), dir + "artify2.jpg")
+  writePict(chromaKey(getPic(), getPic()), dir + "greenscreen2.png")
   
 
 
@@ -54,12 +54,12 @@ def sepia(pic):
       myBlue = b * 0.9
     
     #midtones
-    if r > 62 and r < 192:
+    elif r < 192:
       myRed = r * 1.15
       myBlue = b * 0.85 
     
     #highlights
-    if r > 191:
+    else:
       myRed = r * 1.08
      # if myRed > 255:
       #  myRed = 255
@@ -95,31 +95,31 @@ def artify(pic):
     #reds
     if r < 64:
       myRed = 31
-    elif r > 63 and r < 128:
+    elif r < 128:
       myRed = 95
-    elif r > 127 and r < 192:
+    elif r  < 192:
       myRed = 159
-    elif r > 191 and r < 256:
+    else:
       myRed = 223
     
     #greens
     if g < 64:
       myGreen = 31
-    elif g > 63 and g < 128:
+    elif g < 128:
       myGreen = 95
-    elif g > 127 and g < 192:
+    elif g < 192:
       myGreen = 159
-    elif g > 191 and g < 256:
+    else:
       myGreen = 223
       
     #Blues
     if b < 64:
       myBlue = 31
-    elif b > 63 and b < 128:
+    elif b < 128:
       myBlue = 95
-    elif b > 127 and b < 192:
+    elif b < 192:
       myBlue = 159
-    elif b > 191 and b < 256:
+    else:
       myBlue = 223
       
     
@@ -137,7 +137,7 @@ def chromaKey(pic, back):
     for y in range(0, getHeight(pic)):
       pic_p = getPixel(pic, x, y)
       back_p = getPixel(back, x, y)
-      if distance(green, getColor(pic_p)) < 160:
+      if distance(makeColor(110, 181, 125), getColor(pic_p)) < 75:
         setColor(pic_p, getColor(back_p))
   show(pic)
   return pic
