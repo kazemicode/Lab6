@@ -9,8 +9,8 @@
 dir = "/Documents/CST205/Lab6/output/"
 
 ## main method
-#def main():
-  #writePict(removeRedEye(getPic(),877, 981, 300, 450), dir + "noredeye.jpg")
+def main():
+  writePict(removeRedEye(getPic(), 60, 200, 0, 100), dir + "noredeye.jpg")
   #writePict(artify(getPic()), dir + "artybike.jpg")
 
 
