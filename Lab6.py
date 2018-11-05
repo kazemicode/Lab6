@@ -14,9 +14,9 @@ dir = "/Documents/GitHub/Lab6/output/"
 ## main method
 def main():
   writePict(removeRedEye(getPic(), 322, 995, 385, 465), dir + "noredeye.jpg")
-  #writePict(sepia(getPic(), dir + "sepia.jpg"))
-  #writePict(artify(getPic(), dir + "artify2.jpg"))
-  #writePict(chromaKey(getPic(), getPic()), dir + "greenscreen2.png")
+  writePict(sepia(getPic()), dir + "sepia.jpg")
+  writePict(artify(getPic()), dir + "artify2.jpg")
+  writePict(chromaKey(getPic(), getPic()), dir + "greenscreen2.png")
   
   
 
