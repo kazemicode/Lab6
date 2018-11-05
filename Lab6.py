@@ -1,6 +1,9 @@
 
-# Sara Kazemi
-# Lab6
+# Ryan Dorrity
+# Team SCSI Logic - Cody Young, Sara Kazemi, Nathan Warren-Acord, Ryan Dorrity
+# Lab 6
+# Date 11/4/2018
+
 
 # Run the main method
 # change output directory to desired path on your machine
@@ -10,9 +13,11 @@ dir = "/Documents/GitHub/Lab6/output/"
 
 ## main method
 def main():
-  #writePict(removeRedEye(getPic(), 60, 200, 0, 100), dir + "noredeye.jpg")
-  #writePict(artify(getPic()), dir + "artify2.jpg")
-  writePict(chromaKey(getPic(), getPic()), dir + "greenscreen2.png")
+  writePict(removeRedEye(getPic(), 322, 995, 385, 465), dir + "noredeye.jpg")
+  #writePict(sepia(getPic(), dir + "sepia.jpg"))
+  #writePict(artify(getPic(), dir + "artify2.jpg"))
+  #writePict(chromaKey(getPic(), getPic()), dir + "greenscreen2.png")
+  
   
 
 
@@ -25,6 +30,8 @@ def getPic():
 def writePict(pict,name):
   file=getMediaPath(name)
   writePictureTo(pict,file)
+  
+  
   
 ############################################
 # Warmup: Remove red-eye
@@ -42,33 +49,29 @@ def removeRedEye(pic, x1, x2, y1, y2):
 ############################################
 # Problem 1: Convert picture to sepia tones
 ############################################
+
 def sepia(pic):
-  betterBnW(pic)
-  setColorWrapAround(0)
-  for p in getPixels(pic):
-    r = getRed(p)
-    b = getBlue(p)
-    #lowlights
-    if r < 63:
-      myRed = r * 1.1
-      myBlue = b * 0.9
-    
-    #midtones
-    elif r < 192:
-      myRed = r * 1.15
-      myBlue = b * 0.85 
-    
-    #highlights
-    else:
-      myRed = r * 1.08
-     # if myRed > 255:
-      #  myRed = 255
-      myBlue = b * .93
-    #set new color values
-    setRed(p, myRed)
-    setBlue(p, myBlue)
-  show(pic)
-  return pic
+   #Convert image to grayscale
+   betterBnW(pic)
+   pixels = getPixels(pic)
+   for p in pixels:
+     r = getRed(p)
+     b = getBlue(p)
+     #Adjust lowlights of picture
+     if(r < 63):
+       setRed(p, r * 1.1)
+       setBlue(p, b * 0.9)
+     #Adjust mid tones of picture  
+     elif(r < 192):
+       setRed(p, r * 1.15)
+       setBlue(p, b * 0.85)
+     #Adjust highlights of picture  
+     else:
+       setColorWrapAround(false)
+       setRed(p, r * 1.08)
+       setBlue(p, b * 0.93)
+   show(pic)
+   return pic
       
 
 
@@ -92,46 +95,42 @@ def artify(pic):
     r = getRed(p)
     g = getGreen(p)
     b = getBlue(p)
-    #reds
+    #Red adjustment
     if r < 64:
-      myRed = 31
+      setRed(p, 31)
     elif r < 128:
-      myRed = 95
-    elif r  < 192:
-      myRed = 159
+      setRed(p, 95)
+    elif r < 192:
+      setRed(p, 159)
     else:
-      myRed = 223
-    
-    #greens
+      setRed(p, 223)
+    #Green adjustment
     if g < 64:
-      myGreen = 31
+      setGreen(p, 31)
     elif g < 128:
-      myGreen = 95
+      setGreen(p, 95)
     elif g < 192:
-      myGreen = 159
+      setGreen(p, 159)
     else:
-      myGreen = 223
-      
-    #Blues
+      setGreen(p, 223)
+    #Blue adjustment
     if b < 64:
-      myBlue = 31
+      setBlue(p, 31)
     elif b < 128:
-      myBlue = 95
+      setBlue(p, 95)
     elif b < 192:
-      myBlue = 159
+      setBlue(p, 159)
     else:
-      myBlue = 223
-      
+      setBlue(p, 223)
     
-    #set new color values
-    setColor(p, makeColor(myRed, myGreen, myBlue))
   show(pic)
   return pic
   
 ############################################
 # Problem 3: Implement chromakey
 ############################################
-  
+# Parameters: pic is a greenscreen image, back is 
+# the background image. 
 def chromaKey(pic, back):
   for x in range (0, getWidth(pic)):
     for y in range(0, getHeight(pic)):
