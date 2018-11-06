@@ -3,6 +3,7 @@
 # Team SCSI Logic - Cody Young, Sara Kazemi, Nathan Warren-Acord, Ryan Dorrity
 # Lab 6
 # Date 11/4/2018
+<<<<<<< HEAD
 
 
 # Run the main method
@@ -18,9 +19,19 @@ def main():
   writePict(artify(getPic()), dir + "artify2.jpg")
   writePict(chromaKey(getPic(), getPic()), dir + "greenscreen2.png")
   
+=======
+
+
+## main method
+def main():
+ 
+  dir = ""  # Output directory - change output directory to desired path on your machine
+  writePict(removeRedEye(getPic(), 322, 995, 385, 465), dir + "/noredeye.jpg")
+  writePict(sepia(getPic()), dir + "/sepia.jpg")
+  writePict(artify(getPic()), dir + "/artify2.jpg")
+  writePict(chromaKey(getPic(), getPic()), dir + "/greenscreen2.png")
+>>>>>>> general
   
-
-
 
 # Returns the picture given a directory
 def getPic():
@@ -140,4 +151,4 @@ def chromaKey(pic, back):
         setColor(pic_p, getColor(back_p))
   show(pic)
   return pic
-      
+                                                                                                                     
